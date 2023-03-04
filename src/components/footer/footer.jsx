@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './footer.module.css';
 
-const Footer = () => {
-  return <div className={styles.footer}>footer</div>;
+const Footer = ({ onAdd }) => {
+  const todo = useRef(null);
+
+  return (
+    <div className={styles.footer}>
+      <div className={styles.container}>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Add to do"
+          ref={todo}
+        />
+        <div
+          className={styles.addBtn}
+          onClick={() => {
+            onAdd({ title: todo.current.value, isChecked: false });
+            todo.current.value = '';
+          }}
+        >
+          Add
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Footer;
