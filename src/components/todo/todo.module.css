@@ -1,0 +1,8 @@
+.todo {
+  /* position: absolute; */
+  background-color: salmon;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+}
