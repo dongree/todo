@@ -1,0 +1,28 @@
+.item {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.checked,
+.unchecked {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  color: black;
+  margin-left: 5px;
+}
+
+.deleteBtn {
+  cursor: pointer;
+}

@@ -1,4 +1,6 @@
 .list {
   flex: 8;
-  background-color: cornflowerblue;
+  background-color: bisque;
+  margin: 0;
+  padding: 0;
 }
