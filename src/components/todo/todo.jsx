@@ -5,6 +5,7 @@ import List from '../list/list';
 import styles from './todo.module.css';
 
 const Todo = () => {
+  const [filterId, setFilterId] = useState(1);
   const [data, setData] = useState([
     {
       id: 1,
@@ -48,10 +49,36 @@ const Todo = () => {
     });
   };
 
+  const handleShowedData = () => {
+    switch (filterId) {
+      case 1:
+        return data;
+      case 2:
+        return data.filter(item => {
+          return item.isChecked === true;
+        });
+      case 3:
+        return data.filter(item => {
+          return item.isChecked === false;
+        });
+      default:
+        console.log('잘못된 접근입니다.');
+        break;
+    }
+  };
+
   return (
     <div className={styles.todo}>
-      <Header />
-      <List data={data} onDelete={handleDelete} onUpdate={handleIsChecked} />
+      <Header
+        filterId={id => {
+          setFilterId(id);
+        }}
+      />
+      <List
+        data={handleShowedData()}
+        onDelete={handleDelete}
+        onUpdate={handleIsChecked}
+      />
       <Footer onAdd={handleAdd} />
     </div>
   );

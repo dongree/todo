@@ -2,16 +2,22 @@ import React from 'react';
 import styles from './header.module.css';
 import { BsFillSunFill } from 'react-icons/bs';
 
-const Header = () => {
+const Header = ({ filterId }) => {
   return (
     <div className={styles.header}>
       <div className={styles.lightModeBtn}>
         <BsFillSunFill />
       </div>
       <ul className={styles.btns}>
-        <li className={styles.all}>All</li>
-        <li className={styles.active}>Active</li>
-        <li className={styles.completed}>Completed</li>
+        <li className={styles.all} onClick={() => filterId(1)}>
+          All
+        </li>
+        <li className={styles.active} onClick={() => filterId(2)}>
+          Active
+        </li>
+        <li className={styles.completed} onClick={() => filterId(3)}>
+          Completed
+        </li>
       </ul>
     </div>
   );
