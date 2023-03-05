@@ -1,10 +1,9 @@
 import React, { useContext, useRef, useState } from 'react';
 import styles from './footer.module.css';
-import { DarkModeContext } from '../../context/DarkModeContext';
+
 import { v4 as uuidv4 } from 'uuid';
 
 const Footer = ({ onAdd }) => {
-  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const [text, setText] = useState('');
   // const todo = useRef(null);
   const handleChange = e => setText(e.target.value);
@@ -24,14 +23,7 @@ const Footer = ({ onAdd }) => {
   };
 
   return (
-    <div
-      className={styles.footer}
-      style={
-        darkMode
-          ? { backgroundColor: 'navy' }
-          : { backgroundColor: 'yellowgreen' }
-      }
-    >
+    <div className={styles.footer}>
       <form className={styles.container} onSubmit={handleSubmit}>
         <input
           className={styles.input}

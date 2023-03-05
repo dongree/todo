@@ -1,8 +1,8 @@
 .footer {
   flex: 1;
-  background-color: blueviolet;
   display: flex;
-  background-color: navy;
+  background-color: var(--color-bg-dark);
+  border-radius: 0 0 10px 10px;
 }
 
 .container {

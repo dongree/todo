@@ -1,14 +1,15 @@
 .header {
   flex: 1;
-  background-color: navy;
+  background-color: var(--color-bg-dark);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
+  border-radius: 10px 10px 0 0;
 }
 
 .lightModeBtn {
-  color: white;
+  color: var(--color-text);
   cursor: pointer;
 }
 
