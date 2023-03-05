@@ -16,7 +16,12 @@ const Footer = ({ onAdd }) => {
         <div
           className={styles.addBtn}
           onClick={() => {
-            onAdd({ title: todo.current.value, isChecked: false });
+            const date = new Date();
+            onAdd({
+              title: todo.current.value,
+              isChecked: false,
+              id: date.getTime(),
+            });
             todo.current.value = '';
           }}
         >
