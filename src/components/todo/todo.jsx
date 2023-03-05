@@ -39,10 +39,19 @@ const Todo = () => {
     });
   };
 
+  const handleIsChecked = info => {
+    setData(data => {
+      return data.map(item => {
+        if (item.id === info.id) return { ...item, isChecked: !info.isChecked };
+        return item;
+      });
+    });
+  };
+
   return (
     <div className={styles.todo}>
       <Header />
-      <List data={data} onDelete={handleDelete} />
+      <List data={data} onDelete={handleDelete} onUpdate={handleIsChecked} />
       <Footer onAdd={handleAdd} />
     </div>
   );
