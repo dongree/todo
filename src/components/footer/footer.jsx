@@ -1,10 +1,27 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import styles from './footer.module.css';
 import { DarkModeContext } from '../../context/DarkModeContext';
+import { v4 as uuidv4 } from 'uuid';
 
 const Footer = ({ onAdd }) => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
-  const todo = useRef(null);
+  const [text, setText] = useState('');
+  // const todo = useRef(null);
+  const handleChange = e => setText(e.target.value);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (text.trim().length === 0) {
+      return;
+    }
+    // const date = new Date();
+    onAdd({
+      title: text,
+      isChecked: false,
+      id: uuidv4(),
+    });
+    setText('');
+  };
 
   return (
     <div
@@ -15,28 +32,16 @@ const Footer = ({ onAdd }) => {
           : { backgroundColor: 'yellowgreen' }
       }
     >
-      <div className={styles.container}>
+      <form className={styles.container} onSubmit={handleSubmit}>
         <input
           className={styles.input}
           type="text"
           placeholder="Add to do"
-          ref={todo}
+          value={text}
+          onChange={handleChange}
         />
-        <div
-          className={styles.addBtn}
-          onClick={() => {
-            const date = new Date();
-            onAdd({
-              title: todo.current.value,
-              isChecked: false,
-              id: date.getTime(),
-            });
-            todo.current.value = '';
-          }}
-        >
-          Add
-        </div>
-      </div>
+        <button className={styles.addBtn}>Add</button>
+      </form>
     </div>
   );
 };
