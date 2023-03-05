@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DarkModeProvider } from '../../context/DarkModeContext';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import List from '../list/list';
 import styles from './todo.module.css';
 
+function readDataFromLocalStorage() {
+  const data = localStorage.getItem('data');
+  return data ? JSON.parse(data) : [];
+}
+
 const Todo = () => {
   const [filterId, setFilterId] = useState(1);
-  const [data, setData] = useState([
-    {
-      id: 1,
-      title: '강의보기',
-      isChecked: false,
-    },
-    {
-      id: 2,
-      title: '카페가기',
-      isChecked: true,
-    },
-    {
-      id: 3,
-      title: '청소하기',
-      isChecked: false,
-    },
-  ]);
+  // const [data, setData] = useState(readDataFromLocalStorage());      비효율적
+  const [data, setData] = useState(() => readDataFromLocalStorage());
+
+  useEffect(() => {
+    localStorage.setItem('data', JSON.stringify(data));
+  }, [data]);
 
   const handleAdd = item => {
     setData(data => {
