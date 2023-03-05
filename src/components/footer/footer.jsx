@@ -1,11 +1,20 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import styles from './footer.module.css';
+import { DarkModeContext } from '../../context/DarkModeContext';
 
 const Footer = ({ onAdd }) => {
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const todo = useRef(null);
 
   return (
-    <div className={styles.footer}>
+    <div
+      className={styles.footer}
+      style={
+        darkMode
+          ? { backgroundColor: 'navy' }
+          : { backgroundColor: 'yellowgreen' }
+      }
+    >
       <div className={styles.container}>
         <input
           className={styles.input}

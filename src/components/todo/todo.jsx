@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DarkModeProvider } from '../../context/DarkModeContext';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import List from '../list/list';
@@ -68,19 +69,21 @@ const Todo = () => {
   };
 
   return (
-    <div className={styles.todo}>
-      <Header
-        filterId={id => {
-          setFilterId(id);
-        }}
-      />
-      <List
-        data={handleShowedData()}
-        onDelete={handleDelete}
-        onUpdate={handleIsChecked}
-      />
-      <Footer onAdd={handleAdd} />
-    </div>
+    <DarkModeProvider>
+      <div className={styles.todo}>
+        <Header
+          filterId={id => {
+            setFilterId(id);
+          }}
+        />
+        <List
+          data={handleShowedData()}
+          onDelete={handleDelete}
+          onUpdate={handleIsChecked}
+        />
+        <Footer onAdd={handleAdd} />
+      </div>
+    </DarkModeProvider>
   );
 };
 
